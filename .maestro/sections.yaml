@@ -1,0 +1,124 @@
+appId: com.local.doctorrecords
+---
+- runFlow: helpers/launch.yaml
+- tapOn:
+    id: "tab-records"
+- scrollUntilVisible:
+    element:
+      text: ".*2 个检查分区 · 4 项结果 · 3 页.*"
+    direction: DOWN
+- tapOn: ".*2 个检查分区 · 4 项结果 · 3 页.*"
+- assertVisible: "整份报告"
+- assertVisible: "2 个检查分区 · 4 项结果"
+- takeScreenshot: sections-overview
+- tapOn:
+    id: "document-section-0"
+- tapOn:
+    id: "edit-report"
+    optional: true
+- assertVisible: ".*测试甲.*"
+- scrollUntilVisible:
+    element:
+      id: "observation-value-1"
+    direction: DOWN
+- assertVisible: ".*阴性.*"
+- takeScreenshot: sections-review
+- scrollUntilVisible:
+    element:
+      id: "save-draft"
+    direction: DOWN
+- tapOn:
+    id: "save-draft"
+- stopApp
+- runFlow: helpers/launch.yaml
+- tapOn:
+    id: "tab-records"
+- scrollUntilVisible:
+    element:
+      text: ".*2 个检查分区 · 4 项结果 · 3 页.*"
+    direction: DOWN
+- tapOn: ".*2 个检查分区 · 4 项结果 · 3 页.*"
+- tapOn:
+    id: "document-section-0"
+- tapOn:
+    id: "edit-report"
+    optional: true
+- tapOn:
+    id: "confirm-member-identity"
+    optional: true
+- assertVisible:
+    id: "review-action"
+    text: "完成核对"
+- tapOn:
+    id: "review-action"
+- assertVisible: "整份报告"
+- tapOn:
+    id: "document-original"
+- assertVisible: "1 / 3"
+- tapOn: "下一页"
+- assertVisible: "2 / 3"
+- takeScreenshot: sections-original
+- tapOn: "返回报告"
+- tapOn:
+    id: "document-section-0"
+- tapOn:
+    id: "edit-report"
+    optional: true
+- scrollUntilVisible:
+    element:
+      id: "reparse-report"
+    direction: DOWN
+- tapOn:
+    id: "reparse-report"
+- tapOn: "开始识别"
+- extendedWaitUntil:
+    visible:
+      id: "discard-reparse"
+    timeout: 30000
+- tapOn:
+    id: "discard-reparse"
+- assertVisible: "报告详情"
+- scrollUntilVisible:
+    element:
+      id: "reparse-report"
+    direction: DOWN
+- tapOn:
+    id: "reparse-report"
+- tapOn: "开始识别"
+- extendedWaitUntil:
+    visible:
+      id: "discard-reparse"
+    timeout: 30000
+- tapOn:
+    id: "confirm-member-identity"
+    optional: true
+- assertVisible:
+    id: "review-action"
+    text: "完成核对"
+- tapOn:
+    id: "review-action"
+- assertVisible: "整份报告"
+- scrollUntilVisible:
+    element:
+      id: "reparse-document"
+    direction: DOWN
+- tapOn:
+    id: "reparse-document"
+- tapOn: "重新整理"
+- extendedWaitUntil:
+    visible:
+      id: "discard-document-candidate"
+    timeout: 30000
+- tapOn:
+    id: "discard-document-candidate"
+- scrollUntilVisible:
+    element:
+      id: "document-unprocessed"
+    direction: DOWN
+- tapOn:
+    id: "document-unprocessed"
+- scrollUntilVisible:
+    element:
+      text: "第 3 页 · 尚未整理"
+    direction: DOWN
+- takeScreenshot: sections-unprocessed

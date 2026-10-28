@@ -1,0 +1,56 @@
+appId: com.local.doctorrecords
+---
+- runFlow: helpers/source-open.yaml
+- takeScreenshot: source-viewer
+# Native tests verify pinch, drag and exact double-tap scale changes.
+# Maestro checks that opening and closing the viewer retain the draft.
+- doubleTapOn:
+    id: "source-image-0"
+- assertNotVisible:
+    id: "source-zoom-in"
+- assertVisible:
+    id: "close-source-preview"
+- takeScreenshot: source-after-image-taps
+- doubleTapOn:
+    id: "source-image-0"
+- tapOn:
+    id: "close-source-preview"
+- assertNotVisible:
+    id: "source-image-0"
+- assertVisible:
+    id: "source-toggle-0"
+- takeScreenshot: source-thumbnail
+- tapOn:
+    id: "source-toggle-0"
+- extendedWaitUntil:
+    visible:
+      id: "source-image-0"
+    timeout: 30000
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - pressKey: Back
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - tapOn:
+          id: "close-source-preview"
+- scrollUntilVisible:
+    element:
+      id: "value-0"
+    direction: DOWN
+    centerElement: true
+- assertVisible:
+    id: "value-0"
+    text: "79"
+- scrollUntilVisible:
+    element:
+      text: "‹ 返回"
+    direction: UP
+    centerElement: true
+- tapOn: "‹ 返回"
+- tapOn:
+    id: "tab-metrics"
+- assertVisible: "较上次 -20 U/L"

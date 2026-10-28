@@ -1,0 +1,57 @@
+appId: com.local.doctorrecords
+---
+- runFlow: helpers/launch.yaml
+- tapOn:
+    id: "import-image"
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - extendedWaitUntil:
+          visible: "取消"
+          timeout: 30000
+      - tapOn:
+          point: "16%,28%"
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - extendedWaitUntil:
+          visible:
+            id: "com.google.android.providers.media.module:id/icon_thumbnail"
+          timeout: 30000
+      - tapOn:
+          id: "com.google.android.providers.media.module:id/icon_thumbnail"
+- extendedWaitUntil:
+    visible:
+      id: "photo-recognize"
+    timeout: 30000
+- takeScreenshot: crop-before
+- swipe:
+    from:
+      id: "crop-topLeft"
+    direction: RIGHT
+    duration: 600
+- takeScreenshot: crop-after
+- tapOn: "恢复裁剪"
+- takeScreenshot: crop-reset
+- tapOn:
+    id: "photo-rotate"
+- tapOn:
+    id: "photo-rotate"
+- tapOn:
+    id: "photo-rotate"
+- tapOn:
+    id: "photo-rotate"
+- tapOn:
+    id: "photo-recognize"
+- extendedWaitUntil:
+    visible: "核对报告|这张报告已导入"
+    timeout: 120000
+- runFlow:
+    when:
+      visible: "这张报告已导入"
+    commands:
+      - tapOn:
+          text: "好|确定|OK"
+- runFlow: helpers/photo-review.yaml

@@ -1,0 +1,132 @@
+appId: com.local.doctorrecords
+---
+- stopApp
+- runFlow: helpers/launch.yaml
+- tapOn:
+    id: tab-records
+- scrollUntilVisible:
+    element:
+      id: member-switch
+    direction: UP
+- tapOn:
+    id: member-switch
+- runFlow:
+    when:
+      notVisible: "选择FamilyTest"
+    commands:
+      - tapOn:
+          id: add-member
+      - tapOn:
+          id: member-label
+      - inputText: FamilyTest
+      - runFlow:
+          when:
+            platform: iOS
+          commands:
+            - pressKey: Enter
+      - runFlow:
+          when:
+            platform: Android
+          commands:
+            - hideKeyboard
+      - scrollUntilVisible:
+          element:
+            id: save-member
+          direction: DOWN
+      - tapOn:
+          id: save-member
+      - extendedWaitUntil:
+          visible: "FamilyTest的健康记录"
+          timeout: 10000
+      - tapOn:
+          id: member-switch
+- tapOn: "选择FamilyTest"
+- assertVisible: "FamilyTest的健康记录"
+- takeScreenshot: family-member-records
+- tapOn:
+    id: tab-metrics
+- assertVisible: "指标变化"
+- assertVisible: "还没有可比较的指标"
+- tapOn:
+    id: member-switch
+- tapOn:
+    id: member-self
+- assertVisible: "指标变化"
+- tapOn:
+    id: member-switch
+- tapOn: "选择FamilyTest"
+- tapOn:
+    id: tab-records
+- runFlow:
+    when:
+      visible: ".*Family-QA-Visit.*"
+    commands:
+      - tapOn: ".*Family-QA-Visit.*"
+      - tapOn: "删除就诊记录"
+      - tapOn: "删除"
+- scrollUntilVisible:
+    element: "＋ 记一次就诊"
+    direction: DOWN
+- tapOn: "＋ 记一次就诊"
+- tapOn:
+    id: visit-title
+- inputText: Family-QA-Visit
+- tapOn:
+    id: visit-date
+- inputText: "2026-10-23"
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - pressKey: Enter
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - hideKeyboard
+- scrollUntilVisible:
+    element:
+      id: save-visit
+    direction: DOWN
+- tapOn:
+    id: save-visit
+- scrollUntilVisible:
+    element: ".*Family-QA-Visit.*"
+    direction: DOWN
+- assertVisible: ".*Family-QA-Visit.*"
+- takeScreenshot: family-own-visit
+- scrollUntilVisible:
+    element:
+      id: member-switch
+    direction: UP
+- tapOn:
+    id: member-switch
+- tapOn:
+    id: member-self
+- assertVisible: "健康小本"
+- assertNotVisible: ".*Family-QA-Visit.*"
+- stopApp
+- launchApp
+- extendedWaitUntil:
+    visible: "健康小本"
+    timeout: 20000
+- tapOn:
+    id: member-switch
+- tapOn: "选择FamilyTest"
+- scrollUntilVisible:
+    element: ".*Family-QA-Visit.*"
+    direction: DOWN
+- tapOn: ".*Family-QA-Visit.*"
+- assertVisible: "就诊记录"
+- tapOn: "删除就诊记录"
+- tapOn: "删除"
+- scrollUntilVisible:
+    element:
+      id: member-switch
+    direction: UP
+- tapOn:
+    id: member-switch
+- takeScreenshot: family-member-picker
+- tapOn:
+    id: member-self
+- assertVisible: "健康小本"

@@ -1,0 +1,68 @@
+appId: com.local.doctorrecords
+---
+- runFlow: helpers/launch.yaml
+- tapOn:
+    id: "tab-records"
+- scrollUntilVisible:
+    element:
+      id: "report-2026-10-18"
+    direction: DOWN
+    centerElement: true
+- tapOn:
+    id: "report-2026-10-18"
+- scrollUntilVisible:
+    element:
+      id: "reparse-report"
+    direction: DOWN
+    centerElement: true
+- tapOn:
+    id: "reparse-report"
+- tapOn: "开始识别"
+- extendedWaitUntil:
+    visible: "这是新识别的结果，尚未保存。"
+    timeout: 30000
+- tapOn:
+    id: "discard-reparse"
+- assertVisible:
+    id: "edit-report"
+- scrollUntilVisible:
+    element:
+      id: "reparse-report"
+    direction: DOWN
+    centerElement: true
+- tapOn:
+    id: "reparse-report"
+- tapOn: "开始识别"
+- extendedWaitUntil:
+    visible: "这是新识别的结果，尚未保存。"
+    timeout: 30000
+- scrollUntilVisible:
+    element:
+      id: "observation-toggle-0"
+    direction: DOWN
+    centerElement: true
+- tapOn:
+    id: "observation-toggle-0"
+- scrollUntilVisible:
+    element:
+      id: "value-0"
+    direction: DOWN
+    centerElement: true
+- assertVisible:
+    id: "value-0"
+    text: "80"
+- scrollUntilVisible:
+    element:
+      id: "review-item-0"
+    direction: DOWN
+    centerElement: true
+- tapOn:
+    id: "review-item-0"
+- assertVisible:
+    id: "review-action"
+    text: "完成核对"
+- tapOn:
+    id: "review-action"
+- tapOn:
+    id: "tab-metrics"
+- assertVisible: "较上次 -20 U/L"

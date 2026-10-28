@@ -1,0 +1,60 @@
+appId: com.local.doctorrecords
+---
+- runFlow: helpers/launch.yaml
+- tapOn:
+    id: "tab-records"
+- scrollUntilVisible:
+    element:
+      id: "report-2026-09-18"
+    direction: DOWN
+    centerElement: true
+- tapOn:
+    id: "report-2026-09-18"
+- extendedWaitUntil:
+    visible:
+      text: "核对报告|报告详情"
+    timeout: 20000
+- runFlow:
+    when:
+      visible:
+        id: "edit-report"
+    commands:
+      - tapOn:
+          id: "edit-report"
+- assertVisible: ".*SAMPLE.*"
+- assertVisible:
+    id: "review-action"
+    text: "完成核对"
+- tapOn:
+    id: "review-action"
+- scrollUntilVisible:
+    element:
+      id: "report-2026-10-18"
+    direction: DOWN
+    centerElement: true
+- tapOn:
+    id: "report-2026-10-18"
+- runFlow:
+    when:
+      visible:
+        id: "edit-report"
+    commands:
+      - tapOn:
+          id: "edit-report"
+- assertVisible: ".*SAMPLE.*"
+- assertVisible:
+    id: "review-action"
+    text: "完成核对"
+- tapOn:
+    id: "review-action"
+- tapOn:
+    id: "tab-metrics"
+- assertVisible: "指标变化"
+- assertVisible: "较上次 -20 U/L"
+- takeScreenshot: metrics
+- stopApp
+- launchApp
+- tapOn:
+    id: "tab-metrics"
+- assertVisible: "较上次 -20 U/L"
+- takeScreenshot: metrics

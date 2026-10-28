@@ -1,0 +1,56 @@
+appId: com.local.doctorrecords
+---
+- runFlow: launch.yaml
+- tapOn:
+    id: "tab-records"
+- scrollUntilVisible:
+    element:
+      id: "report-2026-10-18"
+    direction: DOWN
+    centerElement: true
+- tapOn:
+    id: "report-2026-10-18"
+- runFlow:
+    when:
+      visible:
+        id: "edit-report"
+    commands:
+      - tapOn:
+          id: "edit-report"
+- scrollUntilVisible:
+    element:
+      id: "observation-toggle-0"
+    direction: DOWN
+    centerElement: true
+- tapOn:
+    id: "observation-toggle-0"
+- scrollUntilVisible:
+    element:
+      id: "value-0"
+    direction: DOWN
+    centerElement: true
+- tapOn:
+    id: "value-0"
+- eraseText
+- inputText: "79"
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - pressKey: Enter
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - hideKeyboard
+- scrollUntilVisible:
+    element:
+      id: "source-toggle-0"
+    direction: UP
+    centerElement: true
+- tapOn:
+    id: "source-toggle-0"
+- extendedWaitUntil:
+    visible:
+      id: "source-image-0"
+    timeout: 30000

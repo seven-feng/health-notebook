@@ -1,0 +1,28 @@
+appId: com.local.doctorrecords
+---
+- runFlow: helpers/launch.yaml
+- tapOn:
+    id: "tab-records"
+- scrollUntilVisible:
+    element:
+      id: "import-pdf"
+    direction: UP
+    centerElement: true
+- tapOn:
+    id: "import-pdf"
+- tapOn: "Show roots"
+- tapOn: "Downloads"
+- tapOn: "doctor-synthetic-unknown.pdf"
+- extendedWaitUntil:
+    visible: "核对报告"
+    timeout: 20000
+- assertVisible: "0 项"
+- takeScreenshot: file-picker-import
+- scrollUntilVisible:
+    element:
+      id: "delete-report"
+    direction: DOWN
+    centerElement: true
+- tapOn:
+    id: "delete-report"
+- tapOn: "删除"

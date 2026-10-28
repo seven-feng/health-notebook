@@ -1,0 +1,1 @@
+{"platforms":["apple","android"],"apple":{"modules":["LocalPdfModule"],"appDelegateSubscribers":["LocalPdfAppDelegate"]},"android":{"modules":["expo.modules.localpdf.LocalPdfModule"]}}

@@ -1,0 +1,35 @@
+appId: com.local.doctorrecords
+---
+- runFlow: helpers/launch.yaml
+- tapOn:
+    id: "tab-records"
+- scrollUntilVisible:
+    element:
+      text: "待整理报告 · 第 1 页"
+    direction: DOWN
+    centerElement: true
+- tapOn: "待整理报告 · 第 1 页"
+- extendedWaitUntil:
+    visible: "核对报告"
+    timeout: 20000
+- assertVisible: "0 项"
+- scrollUntilVisible:
+    element: "仅归档原件"
+    direction: DOWN
+    centerElement: true
+- tapOn: "仅归档原件"
+- scrollUntilVisible:
+    element: "已归档"
+    direction: UP
+- assertVisible: "已归档"
+- scrollUntilVisible:
+    element:
+      id: "delete-report"
+    direction: DOWN
+    centerElement: true
+- tapOn:
+    id: "delete-report"
+- tapOn: "删除"
+- tapOn:
+    id: "tab-metrics"
+- assertVisible: "较上次 -20 U/L"

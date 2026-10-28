@@ -1,0 +1,117 @@
+appId: com.local.doctorrecords
+---
+- runFlow: helpers/launch.yaml
+- tapOn:
+    id: "tab-records"
+- scrollUntilVisible:
+    element:
+      id: "report-2026-10-18"
+    direction: DOWN
+    centerElement: true
+- tapOn:
+    id: "report-2026-10-18"
+- scrollUntilVisible:
+    element:
+      id: "view-original"
+    direction: DOWN
+    centerElement: true
+- tapOn:
+    id: "view-original"
+- assertVisible: "1 / 1"
+- takeScreenshot: original-pdf
+- tapOn: "返回报告"
+- tapOn:
+    id: "edit-report"
+- scrollUntilVisible:
+    element:
+      id: "observation-toggle-0"
+    direction: DOWN
+    centerElement: true
+- tapOn:
+    id: "observation-toggle-0"
+- scrollUntilVisible:
+    element:
+      id: "value-0"
+    direction: DOWN
+    centerElement: true
+- tapOn:
+    id: "value-0"
+- eraseText
+- inputText: "75"
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - pressKey: Enter
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - hideKeyboard
+- scrollUntilVisible:
+    element:
+      id: "review-item-0"
+    direction: DOWN
+    centerElement: true
+- tapOn:
+    id: "review-item-0"
+- assertVisible:
+    id: "review-action"
+    text: "完成核对"
+- tapOn:
+    id: "review-action"
+- tapOn:
+    id: "tab-metrics"
+- assertVisible: "较上次 -25 U/L"
+- tapOn:
+    id: "tab-records"
+- scrollUntilVisible:
+    element:
+      id: "report-2026-10-18"
+    direction: DOWN
+    centerElement: true
+- tapOn:
+    id: "report-2026-10-18"
+- tapOn:
+    id: "edit-report"
+- scrollUntilVisible:
+    element:
+      id: "observation-toggle-0"
+    direction: DOWN
+    centerElement: true
+- tapOn:
+    id: "observation-toggle-0"
+- scrollUntilVisible:
+    element:
+      id: "value-0"
+    direction: DOWN
+    centerElement: true
+- tapOn:
+    id: "value-0"
+- eraseText
+- inputText: "80"
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - pressKey: Enter
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - hideKeyboard
+- scrollUntilVisible:
+    element:
+      id: "review-item-0"
+    direction: DOWN
+    centerElement: true
+- tapOn:
+    id: "review-item-0"
+- assertVisible:
+    id: "review-action"
+    text: "完成核对"
+- tapOn:
+    id: "review-action"
+- tapOn:
+    id: "tab-metrics"
+- assertVisible: "较上次 -20 U/L"

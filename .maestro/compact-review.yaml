@@ -1,0 +1,94 @@
+appId: com.local.doctorrecords
+---
+- runFlow: helpers/launch.yaml
+- tapOn:
+    id: "tab-records"
+- scrollUntilVisible:
+    element:
+      id: "report-2026-10-18"
+    direction: DOWN
+    centerElement: true
+- tapOn:
+    id: "report-2026-10-18"
+- runFlow:
+    when:
+      visible:
+        id: "edit-report"
+    commands:
+      - tapOn:
+          id: "edit-report"
+- assertVisible:
+    id: "review-count"
+    text: "待核对 0 项"
+- assertNotVisible:
+    id: "next-review"
+- scrollUntilVisible:
+    element:
+      id: "observation-toggle-0"
+    direction: DOWN
+    centerElement: true
+- assertVisible:
+    id: "observation-toggle-1"
+- assertVisible:
+    id: "observation-toggle-2"
+- assertNotVisible:
+    id: "value-0"
+- takeScreenshot: compact-indicator-list
+- tapOn:
+    id: "observation-toggle-0"
+- scrollUntilVisible:
+    element:
+      id: "value-0"
+    direction: DOWN
+    centerElement: true
+- tapOn:
+    id: "value-0"
+- eraseText
+- inputText: "79"
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - pressKey: Enter
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - hideKeyboard
+- scrollUntilVisible:
+    element:
+      id: "collapse-item-0"
+    direction: DOWN
+    centerElement: true
+- tapOn:
+    id: "collapse-item-0"
+- scrollUntilVisible:
+    element:
+      id: "observation-toggle-0"
+    direction: UP
+    centerElement: true
+- assertVisible:
+    id: "observation-value-0"
+    text: "79"
+- assertNotVisible:
+    id: "value-0"
+- tapOn:
+    id: "observation-toggle-0"
+- scrollUntilVisible:
+    element:
+      id: "value-0"
+    direction: DOWN
+    centerElement: true
+- assertVisible:
+    id: "value-0"
+    text: "79"
+- takeScreenshot: expanded-indicator-editor
+- scrollUntilVisible:
+    element:
+      text: "‹ 返回"
+    direction: UP
+    centerElement: true
+- tapOn: "‹ 返回"
+- tapOn:
+    id: "tab-metrics"
+- assertVisible: "较上次 -20 U/L"

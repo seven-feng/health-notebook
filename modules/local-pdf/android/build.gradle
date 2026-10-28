@@ -1,0 +1,26 @@
+apply plugin: 'com.android.library'
+apply plugin: 'expo-module-gradle-plugin'
+
+group = 'expo.modules.localpdf'
+version = '0.1.0'
+
+android {
+  namespace 'expo.modules.localpdf'
+  defaultConfig {
+    versionCode 1; versionName '0.1.0'
+    testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+  }
+  // Private fixtures are only packaged into the explicit local test APK.
+  sourceSets.androidTest.assets.srcDir file('../../../private-fixtures/ocr')
+  sourceSets.androidTest.assets.srcDir file('../../../assets/samples')
+  if (System.getenv('DOCTOR_OCR_FIXTURES')) {
+    sourceSets.androidTest.assets.srcDir file(System.getenv('DOCTOR_OCR_FIXTURES'))
+  }
+}
+dependencies {
+  implementation 'io.legere:pdfiumandroid:1.0.32'
+  implementation 'com.google.mlkit:text-recognition-chinese:16.0.1'
+  androidTestImplementation 'androidx.test:runner:1.6.2'
+  androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+  androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.3.0'
+}

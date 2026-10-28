@@ -1,0 +1,40 @@
+appId: com.local.doctorrecords
+---
+- launchApp
+- openLink: "${DEV_LINK}"
+- tapOn:
+    text: "打开|Open"
+    optional: true
+- tapOn:
+    text: "Continue"
+    optional: true
+- runFlow:
+    when:
+      platform: Android
+      visible: "${DEV_SERVER}"
+    commands:
+      - tapOn: "${DEV_SERVER}"
+      - tapOn:
+          text: "Continue"
+          optional: true
+- runFlow:
+    when:
+      platform: Android
+      visible: "Go home"
+    commands:
+      - back
+- runFlow:
+    when:
+      platform: iOS
+      visible: "Go home"
+    commands:
+      - tapOn: "Reload"
+- extendedWaitUntil:
+    visible:
+      id: "onboarding-start|tab-records"
+    # A newly installed development build may compile its first Metro bundle.
+    # This is a test startup allowance, not a production performance target.
+    timeout: 120000
+- tapOn:
+    id: "onboarding-start"
+    optional: true
